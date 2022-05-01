@@ -1,5 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
+import LojaController from "./controllers/LojaController.js"
 
 dotenv.config();
 const port = process.env.PORT || 3001;
@@ -10,3 +11,7 @@ app.use(express.json());
 app.listen(port, () => {
     console.log(`Servidor lançado na porta ${port}`);
 });
+
+
+LojaController.rotas(app);
+
