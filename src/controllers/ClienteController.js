@@ -43,6 +43,16 @@ class ClienteController{
                 res.status(402).json({erro: error.message});
             }
         });
+
+        app.delete('/clientes/:cpf', async (req, res) => {
+            try {
+                const cpf = req.params.cpf;
+                const resposta = await ClienteMetodos.deletaPorCpf(cpf); 
+                res.status(203).json({mensagem: resposta});
+            } catch (error) {
+                res.status(403).json({erro: error.message});
+            }            
+        });
     }
 }
 
