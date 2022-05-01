@@ -33,7 +33,7 @@ class ClienteMetodos{
     }
 
     static atualizaPorCpf(cpf, cliente) {
-        const query = 'UPDATE clientes SET(cpf,nome,tel,email)=(?,?,?,?) WHERE cpf=${cpf}';
+        const query = `UPDATE clientes SET(cpf,nome,tel,email)=(?,?,?,?) WHERE cpf=${cpf}`;
         const clienteArr = Object.values(cliente);
         return new Promise((resolve, reject) => {
             Database.run(query, clienteArr, error => {
