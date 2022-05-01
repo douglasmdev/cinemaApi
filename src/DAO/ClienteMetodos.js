@@ -5,7 +5,7 @@ class ClienteMetodos{
         const query = 'SELECT * FROM clientes';
         return new Promise((resolve, reject) => {
             Database.all(query, (error, registros) => {
-                if (error) reject(error.message);
+                if (error) reject(error.message)
                 else resolve({clientes: registros});    
             });
         });
@@ -15,7 +15,7 @@ class ClienteMetodos{
         const query = `SELECT * FROM clientes WHERE cpf = ${cpf}`;
         return new Promise((resolve, reject) =>{
             Database.all(query,(error, registros) => {
-                if (error) reject(error.message);
+                if (error) reject(error.message)
                 else resolve({clientes: registros});
             });
         });
@@ -26,8 +26,8 @@ class ClienteMetodos{
         const clienteArr = Object.values(cliente);
         return new Promise ((resolve, reject) => {
             Database.run(query, clienteArr, error => {
-                if(error) reject(error.message);
-                else resolve('Cliente inserido com sucesso!')
+                if(error) reject(error.message)
+                else resolve('Cliente inserido com sucesso!');
             }); 
         });
     }
@@ -38,7 +38,18 @@ class ClienteMetodos{
         return new Promise((resolve, reject) => {
             Database.run(query, clienteArr, error => {
                 if (error) reject(error.message)
-                else resolve('Cliente atualizado com sucesso!')
+                else resolve('Cliente atualizado com sucesso!');
+            });
+        });
+    }
+
+    static deletaPorCpf(cpf) {
+        const query = `DELETE FROM clientes WHERE cpf=${cpf}`;
+        return new Promise((resolve, reject) => {
+            Database.run(query, error => {
+                if (error) reject(error.message)
+                else resolve('Cliente deletado com sucesso!');
+
             });
         });
     }
