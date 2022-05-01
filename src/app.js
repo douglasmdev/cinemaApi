@@ -1,6 +1,6 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import ClienteController  from "./controllers/ClienteController.js";
+import ClienteController from "./controllers/ClienteController.js"; 
 
 dotenv.config();
 const port = process.env.PORT || 3001;
