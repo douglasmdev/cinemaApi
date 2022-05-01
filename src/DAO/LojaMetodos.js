@@ -30,7 +30,7 @@ class LojaMetodos {
         });
     }
 
-    static listalojas() {
+    static listaLojas() {
         const query = 'SELECT * FROM lojas';
         return new Promise((resolve, reject) => {
             Database.all(query, (error, registros) => {
