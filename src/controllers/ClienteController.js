@@ -1,5 +1,5 @@
-import ClienteModel from "../models/ClienteModel";
-import ClienteMetodos from "../DAO/ClienteMetodos";
+import ClienteModel from "../models/ClienteModel.js";
+import ClienteMetodos from "../DAO/ClienteMetodos.js";
 
 class ClienteController{
     static rotas(app) {
@@ -25,7 +25,7 @@ class ClienteController{
         app.post('/clientes', async (req, res) => {
             try {
                 const cliente = new ClienteModel(...Object.values(req.body));
-                const resposta = await ClienteController.insereCliente(cliente);
+                const resposta = await ClienteMetodos.insereCliente(cliente);
                 res.status(201).json({mensagem: resposta});
             } catch (error) {
                 res.status(401).json({erro: error.message});
