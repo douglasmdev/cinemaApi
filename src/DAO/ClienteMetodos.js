@@ -26,11 +26,21 @@ class ClienteMetodos{
         const clienteArr = Object.values(cliente);
         return new Promise ((resolve, reject) => {
             Database.run(query, clienteArr, error => {
-                if(error) reject(erorr.message);
-                else resolve('Usuário inserido com sucesso!')
+                if(error) reject(error.message);
+                else resolve('Cliente inserido com sucesso!')
             }); 
         });
     }
 
+    static atualizaPorCpf(cpf, cliente) {
+        const query = 'UPDATE clientes SET(cpf,nome,tel,email)=(?,?,?,?) WHERE cpf=${cpf}';
+        const clienteArr = Object.values(cliente);
+        return new Promise((resolve, reject) => {
+            Database.run(query, clienteArr, error => {
+                if (error) reject(error.message)
+                else resolve('Cliente atualizado com sucesso!')
+            });
+        });
+    }
 }
 
