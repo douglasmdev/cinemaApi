@@ -55,3 +55,4 @@ class ClienteMetodos{
     }
 }
 
+export default ClienteMetodos
