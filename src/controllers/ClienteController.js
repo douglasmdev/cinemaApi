@@ -31,7 +31,18 @@ class ClienteController{
                 res.status(401).json({erro: error.message});
             }
 
-        })
+        });
+
+        app.put('/clientes/:cpf', async (req, res) => {
+            try {
+                const cpf = req.params.cpf;
+                const clienteAtualizado = new ClienteModel(...Object.values(req.body));
+                const resposta = await ClienteMetodos.atualizaPorCpf(cpf, clienteAtualizado);
+                res.status(202).json({mensagem: resposta});
+            } catch (error) {
+                res.status(402).json({erro: error.message});
+            }
+        });
     }
 }
 
