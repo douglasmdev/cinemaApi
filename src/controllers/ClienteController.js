@@ -56,4 +56,6 @@ class ClienteController{
     }
 }
 
+export default ClienteController
+
 
