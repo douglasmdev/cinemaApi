@@ -1,11 +1,27 @@
 import Database from "../infra/Database.js";
 
 class ClienteMetodos{
+    static criaTabela() {
+        const query = 
+        `CREATE TABLE IF NOT EXISTS clientes (
+            cpf VARCHAR PRIMARY KEY,
+            nome VARCHAR,
+            tel VARCHAR,
+            email VARCHAR  
+        )`
+        return new Promise ((resolve, reject) => {
+            Database.run(query, error =>{
+                if (error) reject(error.message);
+                else resolve('Tabela clientes criada com sucesso!');
+            });
+        }); 
+    }
+
     static listaClientes() {
         const query = 'SELECT * FROM clientes';
         return new Promise((resolve, reject) => {
             Database.all(query, (error, registros) => {
-                if (error) reject(error.message)
+                if (error) reject(error.message);
                 else resolve({clientes: registros});    
             });
         });
@@ -15,7 +31,7 @@ class ClienteMetodos{
         const query = `SELECT * FROM clientes WHERE cpf = ${cpf}`;
         return new Promise((resolve, reject) =>{
             Database.all(query,(error, registros) => {
-                if (error) reject(error.message)
+                if (error) reject(error.message);
                 else resolve({clientes: registros});
             });
         });
@@ -26,7 +42,7 @@ class ClienteMetodos{
         const clienteArr = Object.values(cliente);
         return new Promise ((resolve, reject) => {
             Database.run(query, clienteArr, error => {
-                if(error) reject(error.message)
+                if(error) reject(error.message);
                 else resolve('Cliente inserido com sucesso!');
             }); 
         });
@@ -37,7 +53,7 @@ class ClienteMetodos{
         const clienteArr = Object.values(cliente);
         return new Promise((resolve, reject) => {
             Database.run(query, clienteArr, error => {
-                if (error) reject(error.message)
+                if (error) reject(error.message);
                 else resolve('Cliente atualizado com sucesso!');
             });
         });
@@ -47,7 +63,7 @@ class ClienteMetodos{
         const query = `DELETE FROM clientes WHERE cpf=${cpf}`;
         return new Promise((resolve, reject) => {
             Database.run(query, error => {
-                if (error) reject(error.message)
+                if (error) reject(error.message);
                 else resolve('Cliente deletado com sucesso!');
 
             });
