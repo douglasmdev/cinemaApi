@@ -1,4 +1,3 @@
-import { resolve } from "path";
 import Database from "../infra/Database.js";
 
 class LojaMetodos {
@@ -47,6 +46,28 @@ class LojaMetodos {
             Database.all(query,(error, registros) => {
                 if (error) reject(error.message);
                 else resolve({lojas:registros});
+            });
+        });
+    }
+
+    static atualizaPorId(id, loja) {
+        const query = `UPDATE lojas SET(id,nome,tel,email)=(?,?,?,?) WHERE id=${id}`;
+        const lojaArr = Object.values(loja);
+        return new Promise((resolve, reject) => {
+            Database.run(query, lojaArr, error => {
+                if (error) reject(error.message)
+                else resolve('loja atualizado com sucesso!');
+            });
+        });
+    }
+
+    static deletaPorid(id) {
+        const query = `DELETE FROM lojas WHERE id=${id}`;
+        return new Promise((resolve, reject) => {
+            Database.run(query, error => {
+                if (error) reject(error.message)
+                else resolve('loja deletado com sucesso!');
+
             });
         });
     }
