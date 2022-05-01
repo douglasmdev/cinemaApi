@@ -18,9 +18,20 @@ class ClienteController{
                 const resposta = await ClienteMetodos.listaClientesPorCpf(cpf);
                 res.status(200).json({mensagem: resposta});
             } catch (error) {
-                res.status(400).json({erro: error.message})
+                res.status(400).json({erro: error.message});
             }
-        });       
+        }); 
+        
+        app.post('/clientes', async (req, res) => {
+            try {
+                const cliente = new ClienteModel(...Object.values(req.body));
+                const resposta = await ClienteController.insereCliente(cliente);
+                res.status(201).json({mensagem: resposta});
+            } catch (error) {
+                res.status(401).json({erro: error.message});
+            }
+
+        })
     }
 }
 
