@@ -7,7 +7,8 @@ class LojaMetodos {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             idFilme INTEGER,
             salas INTEGER,
-            assentos INTEGER
+            assentos INTEGER,
+            FOREIGN KEY (idFilmes) REFERENCES filmes (id)
         )
         `;
 

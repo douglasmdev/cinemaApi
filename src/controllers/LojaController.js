@@ -5,8 +5,9 @@ class LojaController {
     static rotas(app) {
         app.post('/lojas', async (req, res) => {
             try {
-                const Loja = new LojaModel(...Object.values(req.body));
-                const resposta = await LojaMetodos.insereLojas(Loja);
+                const loja = new LojaModel(...Object.values(req.body));
+                console.log(loja)
+                const resposta = await LojaMetodos.insereLojas(loja);
                 res.status(201).json({mensagem: resposta});
             } catch (error) {
                 res.status(401).json({erro: error.message});
