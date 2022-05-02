@@ -63,7 +63,7 @@ class LojaMetodos {
         });
     }
 
-    static deletaPorid(id) {
+    static deletaPorId(id) {
         const query = `DELETE FROM lojas WHERE id=${id}`;
         return new Promise((resolve, reject) => {
             Database.run(query, error => {
