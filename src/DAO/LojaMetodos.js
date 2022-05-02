@@ -1,6 +1,7 @@
 import Database from "../infra/Database.js";
 
 class LojaMetodos {
+    
     static criaTabela() {
         const query = `
         CREATE TABLE IF NOT EXISTS lojas (
@@ -8,7 +9,7 @@ class LojaMetodos {
             idFilme INTEGER,
             salas INTEGER,
             assentos INTEGER,
-            FOREIGN KEY (idFilmes) REFERENCES filmes (id)
+            FOREIGN KEY (idFilme) REFERENCES filmes (id)
         )
         `;
 
@@ -52,12 +53,12 @@ class LojaMetodos {
     }
 
     static atualizaPorId(id, loja) {
-        const query = `UPDATE lojas SET(id,nome,tel,email)=(?,?,?,?) WHERE id=${id}`;
+        const query = `UPDATE lojas SET(id,idFilme,salas,assentos)=(?,?,?,?) WHERE id=${id}`;
         const lojaArr = Object.values(loja);
         return new Promise((resolve, reject) => {
             Database.run(query, lojaArr, error => {
                 if (error) reject(error.message)
-                else resolve('loja atualizado com sucesso!');
+                else resolve('loja atualizada com sucesso!');
             });
         });
     }
@@ -67,7 +68,7 @@ class LojaMetodos {
         return new Promise((resolve, reject) => {
             Database.run(query, error => {
                 if (error) reject(error.message)
-                else resolve('loja deletado com sucesso!');
+                else resolve('loja deletada com sucesso!');
 
             });
         });

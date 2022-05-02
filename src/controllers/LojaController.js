@@ -37,7 +37,7 @@ class LojaController {
             try {
                 const id = req.params.id;
                 const lojaAtualizada = new LojaModel(...Object.values(req.body));
-                const resposta = await LojaMetodos.atualizaPorid(id, lojaAtualizada);
+                const resposta = await LojaMetodos.atualizaPorId(id, lojaAtualizada);
                 res.status(202).json({mensagem: resposta});
             } catch (error) {
                 res.status(402).json({erro: error.message});
@@ -47,7 +47,7 @@ class LojaController {
         app.delete('/lojas/:id', async (req, res) => {
             try {
                 const id = req.params.id;
-                const resposta = await LojaMetodos.deletaPorid(id);
+                const resposta = await LojaMetodos.deletaPorId(id);
                 res.status(203).json({mensagem: resposta});
             } catch (error) {
                 res.status(403).json({erro: error.message});
