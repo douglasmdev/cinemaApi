@@ -43,6 +43,16 @@ class BilheteController {
             }  
         });
 
+        app.delete('/bilhetes/:id', async (req, res) => {
+            try {
+                const id = req.params.id;
+                const resposta = await BilheteMetodos.deletaPorId(id);
+                res.status(201).json({mensagem: resposta});
+            } catch (error) {
+                res.status(400).json({erro: error.message});
+            }  
+        });
+
     }
 }
 

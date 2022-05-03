@@ -63,6 +63,15 @@ class BilheteMetodos {
         });
     }
 
+    static deletaPorId(id) {
+        const query = `DELETE FROM bilhetes WHERE id=${id}`;
+        return new Promise((resolve, reject) => {
+            Database.run(query, error => {
+                if (error) reject(error.message);
+                else resolve('Bilhete deletado com sucesso!');
+            });
+        });
+    }
 
 }
 
