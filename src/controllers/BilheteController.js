@@ -32,6 +32,17 @@ class BilheteController {
             }  
         });
 
+        app.put('/bilhetes/:id', async (req, res) => {
+            try {
+                const id = req.params.id;
+                const bilheteAtualizado = new BilheteModel(...Object.values(req.body));
+                const resposta = await BilheteMetodos.atualizaPorId(id, bilheteAtualizado);
+                res.status(200).json({mensagem: resposta});
+            } catch (error) {
+                res.status(400).json({erro: error.mensagem});
+            }  
+        });
+
     }
 }
 

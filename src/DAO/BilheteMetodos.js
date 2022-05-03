@@ -52,6 +52,17 @@ class BilheteMetodos {
         });
     }
 
+    static atualizaPorId(id, bilhete) {
+        const query = `UPDATE bilhetes SET(id,cpfCliente,idFilme,idLoja)=(?,?,?,?) WHERE id=${id}`;
+        const bilheteArr = Object.values(bilhete);
+        return new Promise((resolve, reject) => {
+            Database.run(query, bilheteArr, error => {
+                if (error) reject(error.message);
+                else resolve('Bilhete atualizado com sucesso!');
+            });
+        });
+    }
+
 
 }
 
