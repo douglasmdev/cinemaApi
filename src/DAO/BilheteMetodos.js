@@ -31,6 +31,27 @@ class BilheteMetodos {
             }); 
         });
     }
+    
+    static listaBilhetes() {
+        const query = 'SELECT * FROM bilhetes';
+        return new Promise((resolve, reject) => {
+            Database.all(query, (error, registros) => {
+                if (error) reject(error.message);
+                else resolve({bilhetes: registros});    
+            });
+        });
+    }
+
+    static listaBilhetePorId(id) {
+        const query = `SELECT * FROM bilhetes WHERE id = ${id}`;
+        return new Promise((resolve, reject) =>{
+            Database.all(query,(error, registros) => {
+                if (error) reject(error.message);
+                else resolve({bilhete: registros});
+            });
+        });
+    }
+
 
 }
 

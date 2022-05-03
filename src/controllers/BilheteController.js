@@ -12,6 +12,26 @@ class BilheteController {
                 res.status(400).json({erro: error.message});
             } 
         });
+        
+        app.get('/bilhetes', async (req, res) => {
+            try {
+                const resposta = await BilheteMetodos.listaBilhetes();
+                res.status(200).json({mensagem: resposta});
+            } catch (error) {
+                res.status(400).json({mensagem: error.message});
+            }  
+        });
+
+        app.get('/bilhetes/:id', async (req, res) => {
+            try {
+                const id = req.params.id;
+                const resposta = await BilheteMetodos.listaBilhetePorId(id);
+                res.status(200).json({mensagem: resposta});
+            } catch (error) {
+                res.status(400).json({mensagem: error.message});
+            }  
+        });
+
     }
 }
 
