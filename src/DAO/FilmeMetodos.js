@@ -9,7 +9,7 @@ class FilmeMetodos {
             tipo VARCHAR,
             genero VARCHAR, 
             descricao VARCHAR,
-            lancamento VARCHAR,
+            lancamento VARCHAR
         )
         `;
 
@@ -22,7 +22,7 @@ class FilmeMetodos {
     }
 
     static insereFilme(filme) {
-        const query = `INSERT INTO filme VALUES (?,?,?,?,?,?)`;
+        const query = `INSERT INTO filmes VALUES (?,?,?,?,?,?)`;
         const filmeArr = Object.values(filme);
         return new Promise((resolve, reject) => {
             Database.run(query, filmeArr, error => {
@@ -33,7 +33,7 @@ class FilmeMetodos {
     }
 
     static listaFilme() {
-        const query = 'SELECT * FROM filme';
+        const query = 'SELECT * FROM filmes';
         return new Promise((resolve, reject) => {
             Database.all(query, (error, registros) => {
                 if (error) reject(error.message);
@@ -43,7 +43,7 @@ class FilmeMetodos {
     }
 
     static listaFilmePorId(id) {
-        const query = `SELECT * FROM filme WHERE id=${id}`;
+        const query = `SELECT * FROM filmes WHERE id=${id}`;
         return new Promise((resolve, reject) => {
             Database.all(query,(error, registros) => {
                 if (error) reject(error.message);
@@ -51,6 +51,29 @@ class FilmeMetodos {
             });
         });
     }
+
+    static atualizaPorId(id, filme) {
+        const query = `UPDATE filmes SET(id,nome,tipo,genero,descricao,lancamento)=(?,?,?,?,?,?) WHERE id=${id}`;
+        const filmeArr = Object.values(filme);
+        return new Promise((resolve, reject) => {
+            Database.run(query, filmeArr, error => {
+                if (error) reject(error.message)
+                else resolve('Filme atualizado com sucesso!');
+            });
+        });
+    }
+
+    static deletaPorId(id) {
+        const query = `DELETE FROM filmes WHERE id=${id}`;
+        return new Promise((resolve, reject) => {
+            Database.run(query, error => {
+                if (error) reject(error.message)
+                else resolve('Filme deletado com sucesso!');
+
+            });
+        });
+    }
+    
 }
 
-export default DatabaseMetodos;
+export default FilmeMetodos;

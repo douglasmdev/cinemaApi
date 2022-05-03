@@ -1,6 +1,7 @@
 import express from "express";
 import * as dotenv from "dotenv";
-import FilmesController from "./controllers/FilmeController.js";
+import FilmeController from "./controllers/FilmeController.js";
+
 dotenv.config();
 const port = process.env.PORT || 3001;
 
@@ -11,4 +12,4 @@ app.listen(port, () => {
     console.log(`Servidor lançado na porta ${port}`);
 });
 
-FilmeController.rotas(app)
+FilmeController.rotas(app);
