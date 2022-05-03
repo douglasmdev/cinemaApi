@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import ClienteController from "./controllers/ClienteController.js"; 
 import LojaController from "./controllers/LojaController.js"
 import FilmeController from "./controllers/FilmeController.js";
+import BilheteController from "./controllers/BilheteController.js";
 
 dotenv.config();
 const port = process.env.PORT || 3001;
@@ -17,3 +18,4 @@ app.listen(port, () => {
 ClienteController.rotas(app);
 LojaController.rotas(app);
 FilmeController.rotas(app);
+BilheteController.rotas(app);

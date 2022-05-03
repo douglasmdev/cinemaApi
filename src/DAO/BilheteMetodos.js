@@ -20,6 +20,17 @@ class BilheteMetodos {
             });
         }); 
     }
+    
+    static insereBilhete(bilhete) {
+        const query = `INSERT INTO bilhetes VALUES (?,?,?,?)`
+        const bilheteArr = Object.values(bilhete);
+        return new Promise ((resolve, reject) => {
+            Database.run(query, bilheteArr, error => {
+                if(error) reject(error.message);
+                else resolve('Bilhete inserido com sucesso!');
+            }); 
+        });
+    }
 
 }
 
