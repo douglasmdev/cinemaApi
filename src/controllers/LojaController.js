@@ -6,7 +6,6 @@ class LojaController {
         app.post('/lojas', async (req, res) => {
             try {
                 const loja = new LojaModel(...Object.values(req.body));
-                console.log(loja)
                 const resposta = await LojaMetodos.insereLojas(loja);
                 res.status(201).json({mensagem: resposta});
             } catch (error) {
