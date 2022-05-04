@@ -1,5 +1,6 @@
 import ClienteModel from "../models/ClienteModel.js";
 import ClienteMetodos from "../DAO/ClienteMetodos.js";
+import ClienteValidacoes from "../services/ClienteValidacoes.js";
 
 class ClienteController{
     static rotas(app) {
@@ -23,10 +24,18 @@ class ClienteController{
         }); 
         
         app.post('/clientes', async (req, res) => {
+            const clienteValido = ClienteValidacoes.validaCpf(req.body.cpf) &&
+                                  ClienteValidacoes.validaNome(req.body.nome) &&
+                                  ClienteValidacoes.validaTelefone(req.body.tel) &&
+                                  ClienteValidacoes.validaEmail(req.body.email);
             try {
-                const cliente = new ClienteModel(...Object.values(req.body));
-                const resposta = await ClienteMetodos.insereCliente(cliente);
-                res.status(201).json({mensagem: resposta});
+                if (clienteValido) {
+                    const cliente = new ClienteModel(...Object.values(req.body));
+                    const resposta = await ClienteMetodos.insereCliente(cliente);
+                    res.status(201).json({mensagem: resposta});
+                } else {
+                    throw new Error("Requisição fora dos padrões.");
+                }
             } catch (error) {
                 res.status(401).json({erro: error.message});
             }
