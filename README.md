@@ -81,7 +81,7 @@ Utilizar o método HTTP Post no caminho <b>"url da api" + /clientes</b> com todo
 
 ```json
 {
-      "cpf": "111.111.111.22",
+      "cpf": "111.111.111-22",
       "nome": "Fulano Cicrano",
       "tel": "(21)999999991",
       "email": "fulano@gmail.com"
@@ -99,7 +99,7 @@ Para isso basta respeitar a sintaxe json novamente passada abaixo no body da req
 
 ```json
 {
-      "cpf": "999.999.111.22",
+      "cpf": "999.999.111-22",
       "nome": "Outro Fulano",
       "tel": "(22)777777771",
       "email": "outro@gmail.com"
