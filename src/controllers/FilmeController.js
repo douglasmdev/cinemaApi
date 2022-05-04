@@ -1,14 +1,23 @@
-import DatabaseMetodos from "../DAO/DatabaseMetodos.js";
 import FilmeModel from "../models/FilmeModel.js";
 import FilmeMetodos from "../DAO/FilmeMetodos.js";
+import FilmeValidacoes from "../services/FilmeValidacoes.js";
 
 class FilmeController {
     static rotas(app) {
         app.post('/filmes', async (req, res) => {
+            const filmeValido = FilmeValidacoes.validaNome(req.body.nome) &&
+                                FilmeValidacoes.validaTipo(req.body.tipo) &&
+                                FilmeValidacoes.validaGenero(req.body.genero) &&
+                                FilmeValidacoes.validaDescricao(req.body.descricao) &&
+                                FilmeValidacoes.validaLancamento(req.body.lancamento);
             try {
-                const filme = new FilmeModel(...Object.values(req.body));
-                const resposta = await FilmeMetodos.insereFilme(filme);
-                res.status(201).json({mensagem: resposta});
+                if (filmeValido) {
+                    const filme = new FilmeModel(...Object.values(req.body));
+                    const resposta = await FilmeMetodos.insereFilme(filme);
+                    res.status(201).json({mensagem: resposta});
+                } else {
+                    throw new Error('Requisição fora dos padrões.');
+                }
             } catch (error) {
                 res.status(401).json({erro: error.message});
             }
