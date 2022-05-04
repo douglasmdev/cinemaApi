@@ -37,7 +37,7 @@ class ClienteController{
                     throw new Error("Requisição fora dos padrões.");
                 }
             } catch (error) {
-                res.status(401).json({erro: error.message});
+                res.status(400).json({erro: error.message});
             }
 
         });
@@ -47,9 +47,9 @@ class ClienteController{
                 const cpf = req.params.cpf;
                 const clienteAtualizado = new ClienteModel(...Object.values(req.body));
                 const resposta = await ClienteMetodos.atualizaPorCpf(cpf, clienteAtualizado);
-                res.status(202).json({mensagem: resposta});
+                res.status(200).json({mensagem: resposta});
             } catch (error) {
-                res.status(402).json({erro: error.message});
+                res.status(400).json({erro: error.message});
             }
         });
 
@@ -57,9 +57,9 @@ class ClienteController{
             try {
                 const cpf = req.params.cpf;
                 const resposta = await ClienteMetodos.deletaPorCpf(cpf); 
-                res.status(203).json({mensagem: resposta});
+                res.status(200).json({mensagem: resposta});
             } catch (error) {
-                res.status(403).json({erro: error.message});
+                res.status(400).json({erro: error.message});
             }            
         });
     }

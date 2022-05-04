@@ -19,7 +19,7 @@ class FilmeController {
                     throw new Error('Requisição fora dos padrões.');
                 }
             } catch (error) {
-                res.status(401).json({erro: error.message});
+                res.status(400).json({erro: error.message});
             }
         });
 
@@ -47,9 +47,9 @@ class FilmeController {
                 const id = req.params.id;
                 const filmeAtualizado = new FilmeModel(...Object.values(req.body));
                 const resposta = await FilmeMetodos.atualizaPorId(id, filmeAtualizado);
-                res.status(202).json({mensagem: resposta});
+                res.status(200).json({mensagem: resposta});
             } catch (error) {
-                res.status(402).json({erro: error.message});
+                res.status(400).json({erro: error.message});
             }
         });
 
@@ -57,9 +57,9 @@ class FilmeController {
             try {
                 const id = req.params.id;
                 const resposta = await FilmeMetodos.deletaPorId(id); 
-                res.status(203).json({mensagem: resposta});
+                res.status(200).json({mensagem: resposta});
             } catch (error) {
-                res.status(403).json({erro: error.message});
+                res.status(400).json({erro: error.message});
             }            
         });
 
