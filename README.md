@@ -62,19 +62,21 @@ As rotas da API são: <br>
 
 ### Para cada uma dessas rotas exitem alguns métodos:
 ### Por exemplo, com a rota <b>"/clientes"<b> :
-### Ver todos os cliente:
+### -> Ver todos os cliente:
 
 Utilizar o método HTTP Get no caminho <b>"url da api" + /clientes</b>
 <br>
 <br>
 
-### Buscar clientes por cpf:
+### -> Buscar clientes por cpf:
 
 Utilizar o método HTTP Get no caminho <b>"url da api" + /clientes/cpf</b>
-### Deve-se substituir o "cpf" do caminho acima pelo cpf do cliente desejado.
+```diff
+-Deve-se substituir o "cpf" do caminho acima pelo cpf do cliente desejado.
+```
 <br>
 
-### Adicionar clientes:
+### -> Adicionar clientes:
 Utilizar o método HTTP Post no caminho <b>"url da api" + /clientes</b> com todos os dados necessários para o seu banco de dados. Abaixo segue um json de exemplo para corpo da requisição.
 
 ```json
@@ -88,11 +90,13 @@ Utilizar o método HTTP Post no caminho <b>"url da api" + /clientes</b> com todo
 <br>
 <br>
 
-### Modificar um cliente já existente:
+### -> Modificar um cliente já existente:
 Utilizar o método HTTP Put no caminho <b>"url da api" + /clientes/cpf</b> passando os valores que deseja alterar especificando seus devidos campos.
 Para isso basta respeitar a sintaxe json novamente passada abaixo no body da requisição.
-### Deve-se substituir o "cpf" do caminho acima pelo cpf do cliente desejado.
-   
+```diff
+-Deve-se substituir o "cpf" do caminho acima pelo cpf do cliente desejado.
+```   
+
 ```json
 {
       "cpf": "999.999.111.22",
@@ -104,10 +108,11 @@ Para isso basta respeitar a sintaxe json novamente passada abaixo no body da req
 <br>
 <br>
 
-### Deletar um dos clientes:
+### -> Deletar um dos clientes:
 Utilizar o método HTTP Delete no caminho <b>"url da api" + /clientes/cpf</b>
-### Deve-se substituir o "cpf" do caminho acima pelo cpf do cliente desejado.
-
+```diff
+-Deve-se substituir o "cpf" do caminho acima pelo cpf do cliente desejado.
+```
 <br>
 <br>
 
@@ -116,9 +121,9 @@ Utilizar o método HTTP Delete no caminho <b>"url da api" + /clientes/cpf</b>
 alterando a entidade contida na rota(no exemplo acima: clientes) pela entidade desejada(ou bilhetes, ou filmes, ou lojas).<br><br>
 Para utilizar as rotas que necessitam de parâmetro deve-se passar o identificador da entidade ao invés do cpf, como feito na tabela de clientes:<br>
 
-Verbo GET: buscar um bilhete por id, ou buscar um filme por id, ou buscar uma loja por id. <br><br>
-[Obrigatoriamente passar parêmetro(o id)] VERBO PUT: alterar/atualizar um bilhete, ou alterar/atualizar um filme, ou alterar/atualizar uma loja<br><br>
-[Obrigatoriamente passar parêmetro(o id)] VERBO DELETE: deletar um bilhete, ou deletar um filme, ou deletar uma loja<br><br>
+- Verbo GET: buscar um bilhete por id, ou buscar um filme por id, ou buscar uma loja por id. <br><br>
+- VERBO PUT [Obrigatoriamente passar parêmetro(o id)]: alterar/atualizar um bilhete, ou alterar/atualizar um filme, ou alterar/atualizar uma loja<br><br>
+- VERBO DELETE [Obrigatoriamente passar parêmetro(o id)]: deletar um bilhete, ou deletar um filme, ou deletar uma loja<br><br>
 
 
 <b>Lembre-se: Ao criar o corpo da rquisição(o json) para utilizar no verbo PUT ou POST nessas 3 outras rotas, alterar a chave "cpf" por "id".</b>
