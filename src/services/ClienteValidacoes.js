@@ -5,7 +5,7 @@ class ClienteValidacoes {
     }
 
     static validaNome(str) {
-        const nomeRegEx = /^[A-Za-z\ ]{2,}$/;
+        const nomeRegEx = /^[A-ZÁ-ÚÂ-ÛÃ-Õa-zá-úâ-ûã-ũç\ ]{2,}$/;
         return nomeRegEx.test(str);
     }
 
