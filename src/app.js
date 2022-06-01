@@ -4,12 +4,14 @@ import ClienteController from "./controllers/ClienteController.js";
 import LojaController from "./controllers/LojaController.js"
 import FilmeController from "./controllers/FilmeController.js";
 import BilheteController from "./controllers/BilheteController.js";
+import cors from "cors";
 
 dotenv.config();
 const port = process.env.PORT || 3001;
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.listen(port, () => {
     console.log(`Servidor lançado na porta ${port}`);
